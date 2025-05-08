@@ -8,3 +8,4 @@ mainRouter.get("/", (req, res) => {
 });
 
 mainRouter.post("/name", mainController.addUser);
+mainRouter.get("/names", mainController.getUsers);

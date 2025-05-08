@@ -1,11 +1,17 @@
 import { Request, RequestHandler, Response } from "express";
+import fs from "fs/promises";
+import { addName, readNames } from "../services/db";
 
-export const addUser = (req: Request, res: Response) => {
+export const addUser = async (req: Request, res: Response) => {
     const data = req.body;
 
-    res.json({ newUser: data });
+    const newName = await addName(data.name);
+
+    res.json({ newName: newName });
 };
 
-export const deleteUser: RequestHandler = (req, res) => {
+export const getUsers: RequestHandler = async  (req, res) => {
+    const names = await readNames();
 
+    res.json({ names });
 };
